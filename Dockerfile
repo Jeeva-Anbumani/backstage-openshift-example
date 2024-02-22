@@ -1,6 +1,9 @@
 # STAGE 1 - Facilitate caching by filtering for package.json files
 FROM registry.access.redhat.com/ubi8/nodejs-18-minimal AS packages
 
+# Set Node.js environment variable
+ENV NODE_OPTIONS="--max_old_space_size=4096"
+
 COPY --chown=1001:0 package.json yarn.lock ./
 COPY --chown=1001:0 packages/ packages/
 
